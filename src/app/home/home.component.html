@@ -1,0 +1,50 @@
+<!-- home.component.html -->
+<div class="dashboard-container">
+    <div class="cyber-background">
+      <div class="scanline"></div>
+      <div class="content-wrapper">
+        <h1 class="cyber-title glitch-text">
+          <span class="neon-cyan">WILLKOMMEN, </span> {{username}}
+        </h1>
+  
+        <div class="match-box">
+          <div class="hud-header">
+            <span class="hud-text">NÄCHSTES MATCH</span>
+            <div class="hud-line"></div>
+          </div>
+          
+          <div class="match-grid">
+            <div class="team-column">
+              <h3 class="team-header team-blue">Counter-Terrorists</h3>
+              <div class="player-list">
+                <div *ngFor="let player of currentMatch.teamBlue" class="player-item">
+                  {{player}}
+                </div>
+              </div>
+            </div>
+            
+            <div class="vs-divider">
+              <span class="vs-text">VS</span>
+            </div>
+  
+            <div class="team-column">
+              <h3 class="team-header team-red">Terrorists</h3>
+              <div class="player-list">
+                <div *ngFor="let player of currentMatch.teamRed" class="player-item">
+                  {{player}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+            <button 
+            class="cyber-button"
+          >
+            <span class="button-hacker-text">JOIN</span>
+            <div class="button-glow"></div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
