@@ -1,50 +1,88 @@
 <!-- home.component.html -->
 <div class="dashboard-container">
-    <div class="cyber-background">
-      <div class="scanline"></div>
-      <div class="content-wrapper">
-        <h1 class="cyber-title glitch-text">
-          <span class="neon-cyan">WILLKOMMEN, </span> {{username}}
-        </h1>
-  
-        <div class="match-box">
-          <div class="hud-header">
-            <span class="hud-text">NÄCHSTES MATCH</span>
-            <div class="hud-line"></div>
-          </div>
-          
-          <div class="match-grid">
-            <div class="team-column">
-              <h3 class="team-header team-blue">Counter-Terrorists</h3>
-              <div class="player-list">
-                <div *ngFor="let player of currentMatch.teamBlue" class="player-item">
-                  {{player}}
-                </div>
-              </div>
+  <div class="cyber-background">
+    <div class="scanline"></div>
+    <div class="content-wrapper">
+      <h1 class="cyber-title glitch-text">
+        <span class="neon-cyan">WILLKOMMEN, </span> {{ username }}
+      </h1>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="match-box">
+            <div class="hud-header">
+              <span class="hud-text">RECENT_MATCHES</span>
+              <div class="hud-line"></div>
             </div>
-            
-            <div class="vs-divider">
-              <span class="vs-text">VS</span>
-            </div>
-  
-            <div class="team-column">
-              <h3 class="team-header team-red">Terrorists</h3>
-              <div class="player-list">
-                <div *ngFor="let player of currentMatch.teamRed" class="player-item">
-                  {{player}}
-                </div>
-              </div>
+            <div>
+              <p-accordion>
+                <p-accordionTab header="Header I">
+                  <p>Lorem ipsum dolor sit amet...</p>
+                </p-accordionTab>
+                <p-accordionTab header="Header II">
+                  <p>
+                    Sed ut perspiciatis unde omnis iste natus error sit
+                    voluptatem accusantium...
+                  </p>
+                </p-accordionTab>
+                <p-accordionTab header="Header III">
+                  <p>At vero eos et accusamus et iusto odio dignissimos...</p>
+                </p-accordionTab>
+              </p-accordion>
             </div>
           </div>
         </div>
-        <div>
-            <button 
-            class="cyber-button"
-          >
-            <span class="button-hacker-text">JOIN</span>
-            <div class="button-glow"></div>
-          </button>
+        <div class="col-md-6">
+          <div class="match-box">
+            <div class="hud-header">
+              <span class="hud-text">NEXT_MATCH</span>
+              <div class="hud-line"></div>
+            </div>
+
+            <div class="match-grid">
+              <div class="team-column">
+                <h3 class="team-header team-blue">TEAM 1</h3>
+                <div class="player-list">
+                  <div
+                    *ngFor="let player of currentMatch.team1"
+                    class="player-item"
+                  >
+                    {{ player.user.username }}
+                    <span *ngIf="player.ready">✔</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="vs-divider">
+                <span class="vs-text">VS</span>
+              </div>
+
+              <div class="team-column">
+                <h3 class="team-header team-red">TEAM 2</h3>
+                <div class="player-list">
+                  <div
+                    *ngFor="let player of currentMatch.team2"
+                    class="player-item"
+                  >
+                    {{ player.user.username }}
+                    <span *ngIf="player.ready">✔</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="button-group">
+            <button *ngIf="currentMatch.readyToStart" class="cyber-button">
+              <span class="button-hacker-text">JOIN</span>
+              <div class="button-glow"></div>
+            </button>
+            <button (click)="toggleReady()" class="cyber-button">
+              <span class="button-hacker-text">READY</span>
+              <div class="button-glow"></div>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
+</div>

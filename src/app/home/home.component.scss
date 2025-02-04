@@ -1,6 +1,6 @@
 /* home.component.scss */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono');
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Share+Tech+Mono");
 
 .dashboard-container {
   height: 100vh;
@@ -17,18 +17,21 @@
   left: 0;
   height: 100vh;
   width: 100vw;
-  background: url('https://steamuserimages-a.akamaihd.net/ugc/2024971465997268681/CAE2DFF0A54B3320A6B7754CC4BC46A1DDC9DEDB/?imw=512&imh=278&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true') center/cover no-repeat;
+  background: url("https://steamuserimages-a.akamaihd.net/ugc/2024971465997268681/CAE2DFF0A54B3320A6B7754CC4BC46A1DDC9DEDB/?imw=512&imh=278&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true")
+    center/cover no-repeat;
   z-index: 1;
-  
+
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, 
-      rgba(0, 10, 20, 0.9) 0%, 
-      rgba(0, 80, 120, 0.3) 50%, 
-      rgba(0, 10, 20, 0.9) 100%);
+    background: linear-gradient(
+      45deg,
+      rgba(0, 10, 20, 0.9) 0%,
+      rgba(0, 80, 120, 0.3) 50%,
+      rgba(0, 10, 20, 0.9) 100%
+    );
   }
 }
 
@@ -37,19 +40,20 @@
   z-index: 2;
   padding: 2rem;
   height: 100vh;
+  width: 90wh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .cyber-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-size: 2.5rem;
-  color: #DE73FF;
+  color: #de73ff;
   text-shadow: 0 0 15px #b220ed;
   margin-bottom: 2rem;
   letter-spacing: 3px;
-  
+
   .neon-cyan {
     color: white;
     text-shadow: 0 0 10px grey;
@@ -58,28 +62,27 @@
 
 .match-box {
   background: rgba(0, 0, 0, 0.7);
-  border: 2px solid #DE73FF;
+  border: 2px solid #de73ff;
   box-shadow: 0 0 30px #e4a0e7;
-  width: 80%;
-  max-width: 800px;
+  width: 40vw;
   padding: 2rem;
 }
 
 .hud-header {
-  border-bottom: 2px solid #DE73FF;
+  border-bottom: 2px solid #de73ff;
   margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
-  
+
   .hud-text {
-    font-family: 'Share Tech Mono', monospace;
-    color: #DE73FF;
+    font-family: "Share Tech Mono", monospace;
+    color: #de73ff;
     font-size: 1.5rem;
     letter-spacing: 2px;
   }
-  
+
   .hud-line {
     height: 2px;
-    background: #DE73FF;
+    background: #de73ff;
     width: 100%;
     margin-top: 0.5rem;
     animation: blink 1s step-end infinite;
@@ -100,37 +103,41 @@
 }
 
 .team-header {
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   text-align: center;
   padding: 0.5rem;
   margin: -1rem -1rem 1rem -1rem;
-  
+
   &.team-blue {
-    background: linear-gradient(90deg, 
-      rgba(0, 100, 200, 0.3) 0%, 
-      rgba(0, 200, 255, 0.3) 100%);
+    background: linear-gradient(
+      90deg,
+      rgba(0, 100, 200, 0.3) 0%,
+      rgba(0, 200, 255, 0.3) 100%
+    );
     color: #00a0ff;
   }
-  
+
   &.team-red {
-    background: linear-gradient(90deg, 
-      rgba(255, 50, 0, 0.3) 0%, 
-      rgba(255, 100, 0, 0.3) 100%);
+    background: linear-gradient(
+      90deg,
+      rgba(255, 50, 0, 0.3) 0%,
+      rgba(255, 100, 0, 0.3) 100%
+    );
     color: #ff4000;
   }
 }
 
 .player-list {
-  font-family: 'Share Tech Mono', monospace;
-  
+  font-family: "Share Tech Mono", monospace;
+
   .player-item {
-    color: #DE73FF;
+    color: #de73ff;
     padding: 0.8rem;
     margin: 0.5rem 0;
     background: rgba(0, 30, 60, 0.3);
     border: 1px solid #00f5ff20;
     transition: all 0.3s ease;
-    
+
     &:hover {
       background: rgba(0, 245, 255, 0.1);
       transform: translateX(5px);
@@ -139,37 +146,51 @@
 }
 
 .vs-divider {
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   color: #b220ed;
   text-shadow: 0 0 15px #6f2da8;
   font-size: 2.5rem;
 }
 
 .cyber-button {
-    margin-top: 2rem;
-    background: #001a16;
-    border: 2px solid #DE73FF;
-    color: #DE73FF;
-    padding: 1rem 2rem;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 1.2rem;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    
-    &:hover {
-      background: #DE73FF;
-      color: white;
-      box-shadow: 0 0 20px #DE73FF;
-      
-      .button-glow {
-        opacity: 1;
-      }
+  margin-top: 2rem;
+  background: #001a16;
+  border: 2px solid #de73ff;
+  color: #de73ff;
+  padding: 1rem 2rem;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 1.2rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+
+  &:hover {
+    background: #de73ff;
+    color: white;
+    box-shadow: 0 0 20px #de73ff;
+
+    .button-glow {
+      opacity: 1;
     }
   }
+}
+
+.ready-icon {
+  color: limegreen;
+  margin-left: 8px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+}
 
 /* Animationen und Media Queries wie vorher */
-@keyframes blink { /* Aus Login kopieren */ }
-@media (max-width: 768px) { /* Responsive Anpassungen */ }
+@keyframes blink {
+  /* Aus Login kopieren */
+}
+@media (max-width: 768px) {
+  /* Responsive Anpassungen */
+}
