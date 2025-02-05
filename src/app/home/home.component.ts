@@ -10,7 +10,10 @@ import { interval, Subscription, take } from 'rxjs';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   username: any;
+  userpoints: any;
+
   currentMatch: any;
+  recentMatches: any;
 
   private pollingSubscription!: Subscription;
 
@@ -31,6 +34,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.pollingSubscription) this.pollingSubscription.unsubscribe();
+  }
+
+  reloadRecents() {
+    //TODO
   }
 
   fetchData() {

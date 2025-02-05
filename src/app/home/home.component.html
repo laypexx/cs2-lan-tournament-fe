@@ -7,36 +7,17 @@
         <span class="neon-cyan">WILLKOMMEN, </span> {{ username }}
       </h1>
 
+      <div class="point-box">
+        <h4 class="ranking-text">TOTAL_POINTS: 0</h4>
+        <h4 class="ranking-text">DAY_POINTS: 0</h4>
+        <h4 class="ranking-text">CURRENT_RANKING: 1.</h4>
+      </div>
+
       <div class="row">
         <div class="col-md-6">
           <div class="match-box">
             <div class="hud-header">
-              <span class="hud-text">RECENT_MATCHES</span>
-              <div class="hud-line"></div>
-            </div>
-            <div>
-              <p-accordion>
-                <p-accordionTab header="Header I">
-                  <p>Lorem ipsum dolor sit amet...</p>
-                </p-accordionTab>
-                <p-accordionTab header="Header II">
-                  <p>
-                    Sed ut perspiciatis unde omnis iste natus error sit
-                    voluptatem accusantium...
-                  </p>
-                </p-accordionTab>
-                <p-accordionTab header="Header III">
-                  <p>At vero eos et accusamus et iusto odio dignissimos...</p>
-                </p-accordionTab>
-              </p-accordion>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="match-box">
-            <div class="hud-header">
               <span class="hud-text">NEXT_MATCH</span>
-              <div class="hud-line"></div>
             </div>
 
             <div class="match-grid">
@@ -44,7 +25,7 @@
                 <h3 class="team-header team-blue">TEAM 1</h3>
                 <div class="player-list">
                   <div
-                    *ngFor="let player of currentMatch.team1"
+                    *ngFor="let player of currentMatch?.team1"
                     class="player-item"
                   >
                     {{ player.user.username }}
@@ -61,7 +42,7 @@
                 <h3 class="team-header team-red">TEAM 2</h3>
                 <div class="player-list">
                   <div
-                    *ngFor="let player of currentMatch.team2"
+                    *ngFor="let player of currentMatch?.team2"
                     class="player-item"
                   >
                     {{ player.user.username }}
@@ -72,12 +53,45 @@
             </div>
           </div>
           <div class="button-group">
-            <button *ngIf="currentMatch.readyToStart" class="cyber-button">
+            <button *ngIf="currentMatch?.readyToStart" class="cyber-button">
               <span class="button-hacker-text">JOIN</span>
               <div class="button-glow"></div>
             </button>
             <button (click)="toggleReady()" class="cyber-button">
               <span class="button-hacker-text">READY</span>
+              <div class="button-glow"></div>
+            </button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="match-box">
+            <div class="hud-header">
+              <span class="hud-text">RECENT_MATCHES</span>
+            </div>
+            <div>
+              @if (recentMatches?.length > 0) {
+              <p-accordion>
+                <p-accordionTab header="Header I">
+                  <p>Lorem ipsum dolor sit amet...</p>
+                </p-accordionTab>
+                <p-accordionTab header="Header II">
+                  <p>
+                    Sed ut perspiciatis unde omnis iste natus error sit
+                    voluptatem accusantium...
+                  </p>
+                </p-accordionTab>
+                <p-accordionTab header="Header III">
+                  <p>At vero eos et accusamus et iusto odio dignissimos...</p>
+                </p-accordionTab>
+              </p-accordion>
+              } @else {
+              <p class="placeholder-text">No recent matches found.</p>
+              }
+            </div>
+          </div>
+          <div class="button-group">
+            <button (click)="reloadRecents()" class="cyber-button">
+              <span class="button-hacker-text">RELOAD</span>
               <div class="button-glow"></div>
             </button>
           </div>
