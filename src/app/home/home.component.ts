@@ -62,4 +62,19 @@ export class HomeComponent implements OnInit, OnDestroy {
         },
       });
   }
+
+  userInMatch(): boolean {
+    if (!this.currentMatch) {
+      return false;
+    }
+
+    return (
+      this.currentMatch.team1.some(
+        (player: any) => player.user.username === this.username
+      ) ||
+      this.currentMatch.team2.some(
+        (player: any) => player.user.username === this.username
+      )
+    );
+  }
 }
