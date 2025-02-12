@@ -29,4 +29,17 @@ export class MatchService {
       }
     );
   }
+
+  voteMap(map: string) {
+    const headers = {
+      Authorization: 'Basic ' + btoa(this.auth.getUserName() + ':'),
+    };
+    return this.http.put(
+      'http://localhost:8087/api/match/voteMap/' + map,
+      {},
+      {
+        headers,
+      }
+    );
+  }
 }

@@ -11,13 +11,13 @@ export class AuthService {
 
   login(username: string) {
     const headers = {
-      Authorization: 'Basic ' + btoa(username + ':'),
+      Authorization: 'Basic ' + btoa(username.toLowerCase() + ':'),
     };
     return this.http.get('http://localhost:8087/api/login', { headers });
   }
 
   setUserName(username: string) {
-    localStorage.setItem('cs2-manager-username', username);
+    localStorage.setItem('cs2-manager-username', username.toLowerCase());
   }
 
   getUserName() {

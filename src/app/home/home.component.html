@@ -17,10 +17,18 @@
         <div class="col-md-6">
           <div class="match-box">
             <div class="hud-header">
-              <span class="hud-text">NEXT_MATCH</span>
+              <span class="hud-text">
+                NEXT_MATCH @if (currentMatch?.readyToStart) { ({{
+                  currentMatch?.map
+                }}) - Team {{ currentMatch?.team1PicksTeam ? "1" : "2" }} picks
+                }
+              </span>
             </div>
 
-            <div class="match-grid">
+            <div
+              *ngIf="!allPlayersReady() || currentMatch?.readyToStart"
+              class="match-grid"
+            >
               <div class="team-column">
                 <h3 class="team-header team-blue">TEAM 1</h3>
                 <div class="player-list">
@@ -29,6 +37,7 @@
                     class="player-item"
                   >
                     {{ player.user.username }}
+                    @if (player.user.role === 'ROLE_USER_NPC') { (NPC) }
                     <span *ngIf="player.ready">✔</span>
                   </div>
                 </div>
@@ -46,8 +55,38 @@
                     class="player-item"
                   >
                     {{ player.user.username }}
+                    @if (player.user.role === 'ROLE_USER_NPC') { (NPC) }
                     <span *ngIf="player.ready">✔</span>
                   </div>
+                </div>
+              </div>
+            </div>
+            <div
+              *ngIf="allPlayersReady() && !currentMatch?.readyToStart"
+              class="map-selection"
+            >
+              <div *ngFor="let map of maps" class="map-option">
+                <img
+                  [src]="'assets/' + map.name + '.png'"
+                  [alt]="map.name"
+                  class="map-image"
+                />
+
+                <p-radioButton
+                  name="mapSelection"
+                  [inputId]="'map' + map.id"
+                  [value]="map"
+                  [(ngModel)]="selectedMap"
+                  (click)="voteMap(map.name)"
+                >
+                </p-radioButton>
+
+                <label [for]="'map' + map.id" class="map-label">
+                  {{ map.name }}
+                </label>
+
+                <div class="map-votes">
+                  {{ getVotersForMap(map.name) }}
                 </div>
               </div>
             </div>
@@ -57,7 +96,11 @@
               <span class="button-hacker-text">JOIN</span>
               <div class="button-glow"></div>
             </button>
-            <button (click)="toggleReady()" class="cyber-button">
+            <button
+              *ngIf="!allPlayersReady() && !currentMatch?.readyToStart"
+              (click)="toggleReady()"
+              class="cyber-button"
+            >
               <span class="button-hacker-text">READY</span>
               <div class="button-glow"></div>
             </button>
