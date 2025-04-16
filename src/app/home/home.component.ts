@@ -28,19 +28,17 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   selectedMap: any;
 
+  rankingData: any;
+  showRanking: boolean = false;
+
   private pollingSubscription!: Subscription;
 
-  constructor(
-    private auth: AuthService,
-    private matchService: MatchService,
-    private cdr: ChangeDetectorRef
-  ) {
+  constructor(private auth: AuthService, private matchService: MatchService) {
     this.username = this.auth.getUserName();
   }
 
   ngOnInit(): void {
     this.pollingSubscription = interval(2000).subscribe(() => {
-      //TODO maybe auf WebSockets umsteigen?
       this.fetchData();
     });
   }
@@ -49,18 +47,36 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.pollingSubscription) this.pollingSubscription.unsubscribe();
   }
 
-  reloadRecents() {
-    //TODO
+  getPairedPlayers(team1: any[], team2: any[]): any[] {
+    const maxLength = Math.max(team1.length, team2.length);
+    const result = [];
+
+    for (let i = 0; i < maxLength; i++) {
+      result.push({
+        index: i,
+        team1: team1[i] || null,
+        team2: team2[i] || null,
+      });
+    }
+
+    return result;
+  }
+
+  showRankingView() {
+    this.showRanking = true;
   }
 
   fetchData() {
-    this.matchService.getCurrentMatch().subscribe({
-      next: (res) => {
-        this.currentMatch = res;
-        this.cdr.detectChanges();
+    this.matchService.getData().subscribe({
+      next: (res: any) => {
+        this.currentMatch = res.currentMatch;
+        this.rankingData = res.rankingData;
+        this.recentMatches = res.recentMatches;
       },
       error: (err) => {
         this.currentMatch = null;
+        this.rankingData = null;
+        this.recentMatches = null;
       },
     });
   }

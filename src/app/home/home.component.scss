@@ -65,7 +65,7 @@
   border: 2px solid #de73ff;
   box-shadow: 0 0 30px #e4a0e7;
   width: 40vw;
-  max-height: 59vh;
+  max-height: 65.01vh;
   padding: 2rem;
   overflow: auto;
   padding-bottom: 0%;
@@ -82,8 +82,9 @@
 }
 
 .ranking-text {
-  font-family: "Orbitron", sans-serif;
-  margin-top: 0.3rem;
+  font-family: "Share Tech Mono", monospace;
+  letter-spacing: 2px;
+  margin-top: 0.5rem;
   flex: 1;
   text-align: center;
   color: #de73ff;
@@ -216,6 +217,8 @@
 .button-group {
   display: flex;
   justify-content: center;
+  margin-bottom: 1.5rem;
+  margin-top: -2rem;
 }
 
 .placeholder-text {
@@ -270,4 +273,73 @@ p-radioButton {
   font-size: 12px;
   color: #de73ff;
   margin-top: 5px;
+}
+
+.rating-table table {
+  width: 100%;
+  background: #1a1a1a;
+  color: #de73ff;
+  border: 2px solid #de73ff;
+}
+
+.rating-table th {
+  background: linear-gradient(45deg, #2d2d2d, #1a1a1a);
+  padding: 1rem;
+  border-bottom: 2px solid #de73ff;
+}
+
+.rating-table td {
+  padding: 0.75rem;
+  border-color: #de73ff;
+}
+
+.rating-table tr:hover {
+  background: rgba(222, 115, 255, 0.05);
+}
+
+:host ::ng-deep .p-accordion .p-accordion-header .p-accordion-header-link {
+  text-decoration: none !important;
+  font-family: "Share Tech Mono", monospace;
+}
+
+:host ::ng-deep .p-accordion {
+  /* Accordion Header */
+  .p-accordion-header {
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #39083b;
+    }
+
+    .p-accordion-header-link {
+      color: #de73ff !important;
+      font-weight: 600;
+      padding: 1rem;
+    }
+  }
+
+  /* Aktiver Tab */
+  .p-accordion-tab-active {
+    .p-accordion-header {
+      background-color: #39083b !important;
+      border-bottom-color: #de73ff;
+
+      .p-accordion-header-link {
+        color: #de73ff !important;
+      }
+    }
+  }
+
+  /* Inhalt */
+  .p-accordion-content {
+    border-top: 2px solid #de73ff;
+    padding: 1.5rem;
+    font-family: "Share Tech Mono", monospace;
+  }
+
+  /* Toggle Icon */
+  .p-accordion-toggle-icon {
+    color: #de73ff !important;
+    margin-right: 0.5rem;
+  }
 }

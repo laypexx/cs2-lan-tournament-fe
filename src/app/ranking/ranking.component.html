@@ -1,0 +1,75 @@
+<div class="dashboard-container">
+  <div class="cyber-background">
+    <div class="content-wrapper">
+      <h1 class="cyber-title glitch-text">
+        <span class="neon-cyan">POINTS</span>
+      </h1>
+      <!-- <div class="row point-box">
+        <div class="col-md-12">
+          <div class="hud-header">
+            <span class="hud-text">HOW_IT_WORKS</span>
+          </div>
+          <div class="description-text">
+            Für jedes gespielte Spiel bekommt man Punkte, dabei kann man maximal
+            100 und minimum 10 Punkte erreichen. Diese ergeben sich wie folgt:
+            Jeder Spieler des Teams welches gewonnen hat bekommt 50 Punkte für
+            den WIN, die Verlierer erhalten für den Lose keine Punkte. Die
+            weiteren Punkte werden nach Leistung des Spielers verteilt, sprich
+            der beste Spieler bekommt 50 Punkte, der zweitbeste 40 und so
+            weiter...
+          </div>
+        </div>
+      </div> -->
+      <div class="row point-box">
+        <div class="col-md-12">
+          <div class="hud-header">
+            <span class="hud-text">RATINGS</span>
+          </div>
+          <div class="scroll-container">
+            <div class="rating-table">
+              <table class="w-full border-collapse">
+                <thead>
+                  <tr>
+                    <th colspan="3" class="text-center bg-blue-50">Daily</th>
+                    <th colspan="3" class="text-center bg-red-50">Total</th>
+                  </tr>
+                  <tr>
+                    <th class="text-left p-2">Rank</th>
+                    <th class="text-left p-2">Username</th>
+                    <th class="text-left p-2">Points</th>
+                    <th class="text-right p-2">Rank</th>
+                    <th class="text-right p-2">Username</th>
+                    <th class="text-right p-2">Points</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (index of [].constructor(maxLength); track index; let i =
+                  $index) {
+                  <tr class="hover:bg-gray-50">
+                    <td class="text-left p-2 border">{{ i + 1 }}.</td>
+                    <td class="text-left p-2 border">
+                      {{ sortedDailyRankings[i]?.username || "-" }}
+                    </td>
+                    <td class="text-left p-2 border">
+                      {{ sortedDailyRankings[i]?.dayPoints }}
+                    </td>
+
+                    <td class="text-right p-2 border">{{ i + 1 }}.</td>
+                    <td class="text-right p-2 border">
+                      {{ sortedTotalRankings[i]?.username || "-" }}
+                    </td>
+                    <td class="text-right p-2 border">
+                      {{ sortedTotalRankings[i]?.totalPoints }}
+                    </td>
+                  </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="cyber-button" (click)="close()">close</button>
+    </div>
+  </div>
+</div>

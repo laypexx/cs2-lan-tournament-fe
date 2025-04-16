@@ -13,7 +13,8 @@ export class AuthService {
     const headers = {
       Authorization: 'Basic ' + btoa(username.toLowerCase() + ':'),
     };
-    return this.http.get('http://localhost:8087/api/login', { headers });
+    //return this.http.get('http://192.168.178.48:8080/api/login', { headers });
+    return this.http.get('http://localhost:8080/api/login', { headers });
   }
 
   setUserName(username: string) {

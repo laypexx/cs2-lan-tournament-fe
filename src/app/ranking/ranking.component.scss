@@ -1,0 +1,167 @@
+.dashboard-container {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+}
+
+.cyber-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: url("https://steamuserimages-a.akamaihd.net/ugc/2024971011772947684/CCEE51F9C6A11895FAADCCB2CE4D99E84EDAFBBB/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true")
+    center/cover no-repeat;
+  z-index: 1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      45deg,
+      rgba(0, 10, 20, 0.9) 0%,
+      rgba(0, 80, 120, 0.3) 50%,
+      rgba(0, 10, 20, 0.9) 100%
+    );
+  }
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  height: 100vh;
+  width: 90wh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cyber-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 2.5rem;
+  color: #de73ff;
+  text-shadow: 0 0 15px #b220ed;
+  margin-bottom: 2rem;
+  letter-spacing: 3px;
+
+  .neon-cyan {
+    color: white;
+    text-shadow: 0 0 10px grey;
+  }
+}
+
+.point-box {
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #de73ff;
+  box-shadow: 0 0 30px #e4a0e7;
+  width: 84.6%;
+  max-height: 70vh;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  overflow: auto;
+  flex-direction: column;
+}
+
+/* Innerer Scroll-Container */
+.point-box .scroll-container {
+  flex: 1; /* Nimmt verfügbaren Platz ein */
+  overflow-y: auto; /* Vertikales Scrollen bei Bedarf */
+  min-height: 0; /* Wichtig für Flex-Container */
+}
+
+/* Tabellen-Container anpassen */
+.point-box table {
+  width: 100%;
+  min-width: 800px; /* Mindestbreite für Tabelleninhalte */
+}
+
+.hud-header {
+  border-bottom: 2px solid #de73ff;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+
+  .hud-text {
+    font-family: "Share Tech Mono", monospace;
+    color: #de73ff;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
+
+  .hud-line {
+    height: 2px;
+    background: #de73ff;
+    width: 100%;
+    margin-top: 0.5rem;
+    animation: blink 1s step-end infinite;
+  }
+}
+
+.description-text {
+  font-family: "Share Tech Mono", monospace;
+  color: #de73ff;
+  font-size: 1rem;
+  margin-bottom: 1rem !important;
+}
+
+.rating-table {
+  font-family: "Share Tech Mono", monospace;
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+  overflow-x: auto;
+  box-shadow: 0 0 15px rgba(222, 115, 255, 0.1);
+  border-radius: 8px;
+}
+
+.rating-table table {
+  min-width: 1000px;
+  width: 100%;
+  background: #1a1a1a;
+  color: #de73ff;
+  border: 2px solid #de73ff;
+}
+
+.rating-table th {
+  background: linear-gradient(45deg, #2d2d2d, #1a1a1a);
+  padding: 1rem;
+  border-bottom: 2px solid #de73ff;
+}
+
+.rating-table td {
+  padding: 0.75rem;
+  border-color: #de73ff;
+}
+
+.rating-table tr:hover {
+  background: rgba(222, 115, 255, 0.05);
+}
+
+.cyber-button {
+  background: #001a16;
+  border: 2px solid #de73ff;
+  color: #de73ff;
+  padding: 1rem 2rem;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 1.2rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+
+  &:hover {
+    background: #de73ff;
+    color: white;
+    box-shadow: 0 0 20px #de73ff;
+
+    .button-glow {
+      opacity: 1;
+    }
+  }
+}

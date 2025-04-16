@@ -8,11 +8,11 @@ import { AuthService } from './auth.service';
 export class MatchService {
   constructor(private http: HttpClient, private auth: AuthService) {}
 
-  getCurrentMatch() {
+  getData() {
     const headers = {
       Authorization: 'Basic ' + btoa(this.auth.getUserName() + ':'),
     };
-    return this.http.get('http://localhost:8087/api/match/current', {
+    return this.http.get('http://localhost:8080/api/match/data', {
       headers,
     });
   }
@@ -22,7 +22,7 @@ export class MatchService {
       Authorization: 'Basic ' + btoa(this.auth.getUserName() + ':'),
     };
     return this.http.put(
-      'http://localhost:8087/api/match/toggleReady',
+      'http://localhost:8080/api/match/toggleReady',
       {},
       {
         headers,
@@ -35,7 +35,7 @@ export class MatchService {
       Authorization: 'Basic ' + btoa(this.auth.getUserName() + ':'),
     };
     return this.http.put(
-      'http://localhost:8087/api/match/voteMap/' + map,
+      'http://localhost:8080/api/match/voteMap/' + map,
       {},
       {
         headers,

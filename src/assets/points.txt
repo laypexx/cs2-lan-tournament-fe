@@ -1,0 +1,5 @@
+50/0 = win/lose (game)
+50/40/30/20/10 =1./2./3./4./5. Platz
+
+Win + Dritter = 50 + 30 = 80 
+Lose + Letzter = 0 + 10 = 10

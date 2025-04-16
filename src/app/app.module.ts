@@ -11,9 +11,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { AccordionModule } from 'primeng/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { RankingComponent } from './ranking/ranking.component';
+import { SortDailyPipe, SortTotalPipe } from './pipe/sorting.pipe';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent, AdminComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    HomeComponent,
+    AdminComponent,
+    RankingComponent,
+    SortDailyPipe,
+    SortTotalPipe,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

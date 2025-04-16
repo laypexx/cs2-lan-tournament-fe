@@ -1,16 +1,36 @@
 <!-- home.component.html -->
 <div class="dashboard-container">
   <div class="cyber-background">
-    <div class="scanline"></div>
     <div class="content-wrapper">
       <h1 class="cyber-title glitch-text">
         <span class="neon-cyan">WILLKOMMEN, </span> {{ username }}
       </h1>
 
-      <div class="point-box">
-        <h4 class="ranking-text">TOTAL_POINTS: 0</h4>
-        <h4 class="ranking-text">DAY_POINTS: 0</h4>
-        <h4 class="ranking-text">CURRENT_RANKING: 1.</h4>
+      <div class="point-box" (click)="showRankingView()">
+        <h4 class="ranking-text">
+          TOTAL_POINTS:
+          {{
+            rankingData?.currentUserRanking?.totalPoints
+              ? rankingData?.currentUserRanking?.totalPoints
+              : "NULL"
+          }}
+        </h4>
+        <h4 class="ranking-text">
+          DAY_POINTS:
+          {{
+            rankingData?.currentUserRanking?.dayPoints
+              ? rankingData?.currentUserRanking?.dayPoints
+              : "NULL"
+          }}
+        </h4>
+        <h4 class="ranking-text">
+          DAY_RANK:
+          {{
+            rankingData?.currentUserRanking?.currentDayRank
+              ? rankingData?.currentUserRanking?.currentDayRank
+              : "NULL"
+          }}
+        </h4>
       </div>
 
       <div class="row">
@@ -90,20 +110,20 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="button-group">
-            <button *ngIf="currentMatch?.readyToStart" class="cyber-button">
-              <span class="button-hacker-text">JOIN</span>
-              <div class="button-glow"></div>
-            </button>
-            <button
-              *ngIf="!allPlayersReady() && !currentMatch?.readyToStart"
-              (click)="toggleReady()"
-              class="cyber-button"
-            >
-              <span class="button-hacker-text">READY</span>
-              <div class="button-glow"></div>
-            </button>
+            <div class="button-group">
+              <button *ngIf="currentMatch?.readyToStart" class="cyber-button">
+                <span class="button-hacker-text">JOIN</span>
+                <div class="button-glow"></div>
+              </button>
+              <button
+                *ngIf="!allPlayersReady() && !currentMatch?.readyToStart"
+                (click)="toggleReady()"
+                class="cyber-button"
+              >
+                <span class="button-hacker-text">READY</span>
+                <div class="button-glow"></div>
+              </button>
+            </div>
           </div>
         </div>
         <div class="col-md-6">
@@ -111,35 +131,97 @@
             <div class="hud-header">
               <span class="hud-text">RECENT_MATCHES</span>
             </div>
-            <div>
-              @if (recentMatches?.length > 0) {
+            <div class="mb-4">
+              @if (recentMatches && recentMatches.length > 0) {
               <p-accordion>
-                <p-accordionTab header="Header I">
-                  <p>Lorem ipsum dolor sit amet...</p>
+                @for (match of recentMatches; track match.id) {
+                <p-accordionTab
+                  [header]="
+                    match.map +
+                    ' - ' +
+                    (match.matchStart | date : 'dd.MM.yyyy hh:MM') +
+                    ' Uhr'
+                  "
+                >
+                  <div class="rating-table">
+                    <table class="w-full border-collapse">
+                      <thead>
+                        <tr>
+                          <!-- Team 1 Columns -->
+                          <th colspan="4" class="text-center bg-blue-50">
+                            Team 1 ({{ match.team1RoundWinCount }} rounds won)
+                          </th>
+                          <!-- Team 2 Columns -->
+                          <th colspan="4" class="text-center bg-red-50">
+                            Team 2 ({{ match.team2RoundWinCount }} rounds won)
+                          </th>
+                        </tr>
+                        <tr>
+                          <!-- Team 1 Headers -->
+                          <th class="text-left p-2">Player</th>
+                          <th class="text-right p-2">Kills</th>
+                          <th class="text-right p-2">Deaths</th>
+                          <th class="text-right p-2">Damage</th>
+                          <!-- Team 2 Headers -->
+                          <th class="text-left p-2">Player</th>
+                          <th class="text-right p-2">Kills</th>
+                          <th class="text-right p-2">Deaths</th>
+                          <th class="text-right p-2">Damage</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @for (playerPair of getPairedPlayers(match.team1,
+                        match.team2); track playerPair.index) {
+                        <tr class="hover:bg-gray-50">
+                          <!-- Team 1 Player -->
+                          <td class="text-left p-2 border">
+                            {{ playerPair.team1?.user?.username || "-" }}
+                          </td>
+                          <td class="text-right p-2 border">
+                            {{ playerPair.team1?.kills || "-" }}
+                          </td>
+                          <td class="text-right p-2 border">
+                            {{ playerPair.team1?.deaths || "-" }}
+                          </td>
+                          <td class="text-right p-2 border">
+                            {{ playerPair.team1?.damage || "-" }}
+                          </td>
+                          <!-- Team 2 Player -->
+                          <td class="text-left p-2 border">
+                            {{ playerPair.team2?.user?.username || "-" }}
+                          </td>
+                          <td class="text-right p-2 border">
+                            {{ playerPair.team2?.kills || "-" }}
+                          </td>
+                          <td class="text-right p-2 border">
+                            {{ playerPair.team2?.deaths || "-" }}
+                          </td>
+                          <td class="text-right p-2 border">
+                            {{ playerPair.team2?.damage || "-" }}
+                          </td>
+                        </tr>
+                        }
+                      </tbody>
+                    </table>
+                  </div>
                 </p-accordionTab>
-                <p-accordionTab header="Header II">
-                  <p>
-                    Sed ut perspiciatis unde omnis iste natus error sit
-                    voluptatem accusantium...
-                  </p>
-                </p-accordionTab>
-                <p-accordionTab header="Header III">
-                  <p>At vero eos et accusamus et iusto odio dignissimos...</p>
-                </p-accordionTab>
+                }
               </p-accordion>
               } @else {
               <p class="placeholder-text">No recent matches found.</p>
               }
             </div>
           </div>
-          <div class="button-group">
-            <button (click)="reloadRecents()" class="cyber-button">
-              <span class="button-hacker-text">RELOAD</span>
-              <div class="button-glow"></div>
-            </button>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<app-ranking
+  *ngIf="showRanking"
+  [rankingData]="rankingData"
+  [username]="username"
+  (exit)="showRanking = false"
+>
+</app-ranking>
