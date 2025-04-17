@@ -42,4 +42,14 @@ export class MatchService {
       }
     );
   }
+
+  getSteamUrl() {
+    const headers = {
+      Authorization: 'Basic ' + btoa(this.auth.getUserName() + ':'),
+    };
+    return this.http.get('http://localhost:8080/api/match/steamUrl', {
+      headers: headers,
+      responseType: 'text',
+    });
+  }
 }

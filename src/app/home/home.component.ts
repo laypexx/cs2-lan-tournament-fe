@@ -2,6 +2,8 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { MatchService } from '../service/match.service';
 import { interval, Subscription, take } from 'rxjs';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -35,9 +37,16 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private pollingSubscription!: Subscription;
 
-  constructor(private auth: AuthService, private matchService: MatchService) {
+  constructor(
+    private auth: AuthService,
+    private matchService: MatchService,
+    private router: Router
+  ) {
     this.username = this.auth.getUserName();
     this.loading = true;
+    if (!this.username) {
+      this.router.navigate(['']);
+    }
   }
 
   ngOnInit(): void {
@@ -83,6 +92,22 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.recentMatches = null;
       },
     });
+  }
+
+  join() {
+    this.matchService
+      .getSteamUrl()
+      .pipe(take(1))
+      .subscribe({
+        next: (steamUrl: any) => {
+          const link = document.createElement('a');
+          link.href = steamUrl;
+          link.click();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
 
   toggleReady() {

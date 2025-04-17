@@ -110,7 +110,11 @@
               </div>
             </div>
             <div class="button-group">
-              <button *ngIf="currentMatch?.readyToStart" class="cyber-button">
+              <button
+                *ngIf="currentMatch?.readyToStart"
+                (click)="join()"
+                class="cyber-button"
+              >
                 <span class="button-hacker-text">JOIN</span>
                 <div class="button-glow"></div>
               </button>
