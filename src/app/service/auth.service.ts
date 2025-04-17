@@ -1,10 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private readonly apiUrl = environment.apiUrl;
+
   currentUser: any;
 
   constructor(private http: HttpClient) {}
@@ -13,8 +16,7 @@ export class AuthService {
     const headers = {
       Authorization: 'Basic ' + btoa(username.toLowerCase() + ':'),
     };
-    //return this.http.get('http://192.168.178.48:8080/api/login', { headers });
-    return this.http.get('http://localhost:8080/api/login', { headers });
+    return this.http.get(`${this.apiUrl}/api/login`, { headers });
   }
 
   setUserName(username: string) {

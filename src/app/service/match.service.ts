@@ -1,18 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MatchService {
+  private readonly apiUrl = environment.apiUrl;
+
   constructor(private http: HttpClient, private auth: AuthService) {}
 
   getData() {
     const headers = {
       Authorization: 'Basic ' + btoa(this.auth.getUserName() + ':'),
     };
-    return this.http.get('http://localhost:8080/api/match/data', {
+    return this.http.get(`${this.apiUrl}/api/match/data`, {
       headers,
     });
   }
@@ -22,7 +25,7 @@ export class MatchService {
       Authorization: 'Basic ' + btoa(this.auth.getUserName() + ':'),
     };
     return this.http.put(
-      'http://localhost:8080/api/match/toggleReady',
+      `${this.apiUrl}/api/match/toggleReady`,
       {},
       {
         headers,
@@ -35,7 +38,7 @@ export class MatchService {
       Authorization: 'Basic ' + btoa(this.auth.getUserName() + ':'),
     };
     return this.http.put(
-      'http://localhost:8080/api/match/voteMap/' + map,
+      `${this.apiUrl}/api/match/voteMap/${map}`,
       {},
       {
         headers,
@@ -47,7 +50,7 @@ export class MatchService {
     const headers = {
       Authorization: 'Basic ' + btoa(this.auth.getUserName() + ':'),
     };
-    return this.http.get('http://localhost:8080/api/match/steamUrl', {
+    return this.http.get(`${this.apiUrl}/api/match/steamUrl`, {
       headers: headers,
       responseType: 'text',
     });
