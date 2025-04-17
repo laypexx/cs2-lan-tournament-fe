@@ -31,10 +31,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   rankingData: any;
   showRanking: boolean = false;
 
+  loading: boolean = false;
+
   private pollingSubscription!: Subscription;
 
   constructor(private auth: AuthService, private matchService: MatchService) {
     this.username = this.auth.getUserName();
+    this.loading = true;
   }
 
   ngOnInit(): void {
@@ -72,6 +75,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.currentMatch = res.currentMatch;
         this.rankingData = res.rankingData;
         this.recentMatches = res.recentMatches;
+        this.loading = false;
       },
       error: (err) => {
         this.currentMatch = null;

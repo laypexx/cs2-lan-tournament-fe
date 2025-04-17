@@ -27,7 +27,7 @@
           DAY_RANK:
           {{
             rankingData?.currentUserRanking?.currentDayRank
-              ? rankingData?.currentUserRanking?.currentDayRank
+              ? rankingData?.currentUserRanking?.currentDayRank + "."
               : "NULL"
           }}
         </h4>
@@ -224,3 +224,7 @@
   (exit)="showRanking = false"
 >
 </app-ranking>
+
+<div *ngIf="loading" class="overlay">
+  <div class="spinner"></div>
+</div>
